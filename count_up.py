@@ -35,7 +35,15 @@ if not os.path.exists(fasta):
 with gzip.open(gff,"rt") as fh:
     # now add code to process this
     gff = csv.reader(fh,delimiter="\t")
+    gene_count = 0
+
     for row in gff:
+
         if row[0].startswith("#"):
             continue
-        print(row[3],row[6])
+
+        if "gene" == row[2]:
+
+            gene_count += 1
+            
+print(gene_count)
